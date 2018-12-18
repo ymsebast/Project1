@@ -22,6 +22,11 @@
 .materialize-red.lighten-4 {
   background-color: #f8c1c3 !important;
 }
+.sticky{
+  position: fixed;
+  width: 40%;
+  top: 60px;
+}
 
 .materialize-red-text.text-lighten-4 {
   color: #f8c1c3 !important;
@@ -4752,6 +4757,7 @@ small {
   transition: box-shadow .25s;
   transition: box-shadow .25s, -webkit-box-shadow .25s;
   border-radius: 2px;
+  width: 400px;
 }
 
 .card .card-title {

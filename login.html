@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DYI Knot Login</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+    <style>  
+        .hide{
+        display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="email" id="txtEmail" placeholder="Enter email" /> <br/>
+        <input type="password" id="txtPassword" placeholder="Enter password (min 6 characters)" /><br/>
+        <button id="btnLogin" >Log in</button>
+        <button id="btnSignUp" >Sign Up</button>
+        <button id="btnLogOut" class="hide" >Log Out</button>
+        
+    </div>  
+    <div id="results"></div>
+    <script type="text/javascript" src="./js/website.js"></script>
+
+    
+
+  
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+</body>
+
+</html>
