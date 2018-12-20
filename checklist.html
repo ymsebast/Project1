@@ -10,71 +10,69 @@
     <!-- Link jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <!-- Link CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="./checkliststyle.css" media="screen">
+
     <!-- Link Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Link Materialize icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Link Sweetalerts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
     <div class="container">
         <!-- uncompleted tasks table -->
-        <h4>To Do</h4>
-        <table id="toDoTable" class="highlight">
+        <h4 class="header">- To Do -</h4>
+        <table id="toDoTable" class="highlight centered">
             <thead>
                 <tr>
-                    <th>Task</th>
-                    <th>Due Date</th>
-                    <th>Notes</th>
+                    <th>TASK</th>
+                    <th>DUE DATE</th>
+                    <th>NOTES</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
-        </table>
-
-        <!-- completed tasks table -->
-        <h4>Done</h4>
-        <table id="doneTable" class="highlight">
-            <thead>
-                <tr>
-                    <th>Task</th>
-                    <th>Due Date</th>
-                    <th>Notes</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
+            <tbody>
+            </tbody>
         </table>
 
         <!-- add task -->
-        <h4>Add Task</h4>
-        <div class="row">
+        <div class="row" id="form-row">
+            <h4 class="header">- Add Task -</h4>
             <form class="col s12">
                 <!-- task -->
                 <div class="row">
-                    <div class="input-field col s8">
+                    <div class="input-field col s6 offset-s3">
                         <i class="material-icons prefix">edit</i>
                         <input id="task" type="text">
-                        <label for="task">Task</label>
+                        <label for="task" class="active">Task</label>
                     </div>
                 </div>
 
                 <!-- due date -->
                 <div class="row">
-                    <div class="input-field col s8">
+                    <div class="input-field col s6 offset-s3">
                         <i class="material-icons prefix">event</i>
                         <input id="due-date" type="date">
-                        <label for="due-date">Due Date</label>
+                        <label for="due-date" class="active">Due Date</label>
                     </div>
                 </div>
 
                 <!-- notes -->
                 <div class="row">
-                    <div class="input-field col s8">
+                    <div class="input-field col s6 offset-s3">
                         <i class="material-icons prefix">note</i>
                         <textarea id="notes" class="materialize-textarea"></textarea>
-                        <label for="notes">Notes</label>
+                        <label for="notes" class="active">Notes</label>
                     </div>
                 </div>
 
@@ -87,6 +85,10 @@
 
 
     </div> <!-- end container div -->
+
+    <!-- Link to Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+
     <!-- Link JavaScript -->
     <script src="./checklist.js"></script>
 </body>

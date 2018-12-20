@@ -1,0 +1,16 @@
+.header {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+#form-row {
+    border: 2px solid lightgray;
+    margin-top: 30px;
+    padding: 50px;
+    text-align: center;
+}
+
+#addButton {
+    letter-spacing: 2px;
+}
