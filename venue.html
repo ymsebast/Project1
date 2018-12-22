@@ -25,7 +25,7 @@
                 <li><a href="#">Checklist</a></li>
                 <li><a href="./catering.html">Catering</a></li>
                 <li><a href="./venue.html">Venues</a></li>
-                <li><a href="#">Fashion</a></li>
+                <li><a href="#">Themes</a></li>
                 <li><a href="#">Budget</a></li>
             </ul>
 
@@ -34,7 +34,7 @@
                 <li><a href="#">Checklist</a></li>
                 <li><a href="./catering.html">Catering</a></li>
                 <li><a href="./venue.html">Venues</a></li>
-                <li><a href="#">Fashion</a></li>
+                <li><a href="#">Themes</a></li>
                 <li><a href="#">Budget</a></li>
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -54,13 +54,13 @@
 
             </div>
         </div>
-        <div class="parallax"><img src="./img/wve.jpg" alt="Unsplashed background img 1"></div>
+        <div class="parallax" id="venueimg"><img src="./img/wve.jpg" alt="Unsplashed background img 1"></div>
     </div>
 
     <div class="container">
         <div class="row">
             <!-- Query -->
-            <h2>Where would you like the venue to be?</h2>
+            <h3>Where would you like the venue to be?</h3>
             <br>
             <input class="form-control" type="text" id="search">
         </div>
@@ -94,11 +94,11 @@
 
     <script>
 
-        var x = document.getElementById("demo");
         var lat;
         var long;
         var data;
         var favList = [];
+        //Track location of user
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
@@ -131,8 +131,7 @@
                     for (var i = 0; i < response.businesses.length; i++) {
                         $("#results").append("<div class='row'> <div class='col s12 m6'> <div class='card'> <div class='card-image'> <img src='" + response.businesses[i].image_url + "'> <span class='card-title'>" + response.businesses[i].name + "</span> <a val='" + i + "' id='venues' class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>favorite_border</i></a> </div> <div class='card-content'> <p>" + response.businesses[i].location.display_address[0] + response.businesses[i].location.display_address[1] + "<br> Rating: " + response.businesses[i].rating + "</p> </div> </div> </div> </div>");
                     }
-                    var randbutton = $("<button id='random' class='btn btn-dark' onclick='getRandom()'>I Can't Pick</button>")
-                    $("#results").append(randbutton);
+                   
                 });
 
         });
@@ -181,7 +180,7 @@
                     return;
                 }
             }
-            favList.push(venueID);
+            favList.unshift(venueID);
             // console.log(favList);
             // console.log(data.businesses[venueID].name);
             $(".collection").html("");

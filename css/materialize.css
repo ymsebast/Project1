@@ -27,7 +27,12 @@
   width: 40%;
   top: 60px;
 }
-
+#caterimg{
+  opacity: 0.7;
+}
+#venueimg{
+  opacity: 0.7;
+}
 .materialize-red-text.text-lighten-4 {
   color: #f8c1c3 !important;
 }
