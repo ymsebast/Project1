@@ -13,4 +13,4 @@ The index homepage and navbar links to all the features offered.
 * Yelp API
 * Pinterest API
 * Firebase
-*jQuery
+* jQuery
