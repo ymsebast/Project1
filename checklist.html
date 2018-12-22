@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checklist</title>
+
+    <!-- Link jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Link CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="./checkliststyle.css" media="screen">
+
+    <!-- Link Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Link Materialize icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Link Sweetalerts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+          <a id="logo-container" href="#" class="brand-logo">
+            <img class="logo-img" src="./img/DIYKnot.png" alt="logo">
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./checklist.html">Checklist</a></li>
+            <li><a href="./catering.html">Catering</a></li>
+            <li><a href="./venue.html">Venues</a></li>
+            <li><a href="./themes.html">Themes</a></li>
+            <li><a href="./Budget.html">Budget</a></li>
+          </ul>
+    
+          <ul id="nav-mobile" class="sidenav">
+            <li><a href="./checklist.html">Checklist</a></li>
+            <li><a href="./catering.html">Catering</a></li>
+            <li><a href="./venue.html">Venues</a></li>
+            <li><a href="./themes.html">Themes</a></li>
+            <li><a href="./Budget.html">Budget</a></li>
+          </ul>
+          <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+    <div class="container">
+        <!-- uncompleted tasks table -->
+        <h4 class="header">- To Do -</h4>
+        <table id="toDoTable" class="highlight centered">
+            <thead>
+                <tr>
+                    <th>TASK</th>
+                    <th>DUE DATE</th>
+                    <th>NOTES</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <!-- add task -->
+        <div class="row" id="form-row">
+            <h4 class="header">- Add Task -</h4>
+            <form class="col s12">
+                <!-- task -->
+                <div class="row">
+                    <div class="input-field col s6 offset-s3">
+                        <i class="material-icons prefix">edit</i>
+                        <input id="task" type="text">
+                        <label for="task" class="active">Task</label>
+                    </div>
+                </div>
+
+                <!-- due date -->
+                <div class="row">
+                    <div class="input-field col s6 offset-s3">
+                        <i class="material-icons prefix">event</i>
+                        <input id="due-date" type="date">
+                        <label for="due-date" class="active">Due Date</label>
+                    </div>
+                </div>
+
+                <!-- notes -->
+                <div class="row">
+                    <div class="input-field col s6 offset-s3">
+                        <i class="material-icons prefix">note</i>
+                        <textarea id="notes" class="materialize-textarea"></textarea>
+                        <label for="notes" class="active">Notes</label>
+                    </div>
+                </div>
+
+                <!-- submit button -->
+                <button id="addButton" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div> <!-- end main row div -->
+
+
+    </div> <!-- end container div -->
+
+    <!-- Link to Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+
+    <!-- Link JavaScript -->
+    <script src="./checklist.js"></script>
+</body>
+
+</html>

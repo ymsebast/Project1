@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Venue</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="./img/fav.ico.ico" />
+</head>
+
+<body>
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">
+                <img class="logo-img" src="./img/DIYKnot.png" alt="logo">
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./checklist.html">Checklist</a></li>
+                <li><a href="./catering.html">Catering</a></li>
+                <li><a href="./venue.html">Venues</a></li>
+                <li><a href="./themes.html">Themes</a></li>
+                <li><a href="./Budget.html">Budget</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./checklist.html">Checklist</a></li>
+                <li><a href="./catering.html">Catering</a></li>
+                <li><a href="./venue.html">Venues</a></li>
+                <li><a href="./themes.html">Themes</a></li>
+                <li><a href="./Budget.html">Budget</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <br><br>
+                <h1 class="header center red-text text-lighten-2">Venues</h1>
+                <div class="row center">
+                    <button id="submit" class='btn-large waves-effect waves-light red lighten-1' onclick="getLocation()">Find
+                        Nearby</button>
+                </div>
+                <br><br>
+
+            </div>
+        </div>
+        <div class="parallax"><img src="./img/wve.jpg" alt="Unsplashed background img 1"></div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <!-- Query -->
+            <h2>Where would you like the venue to be?</h2>
+            <br>
+            <input class="form-control" type="text" id="search">
+        </div>
+        <div>
+            <button id="submit2" class='btn-large waves-effect waves-light red lighten-1'>Find around here</button>
+        </div>
+        <!-- Results -->
+        <div class="row" id="content">
+            <div class="col s6">
+                <div>
+                    <ul id="results">
+                    </ul>
+                </div>
+            </div>
+            <!-- Favorites List -->
+            <div class="col s6">
+                <div id="favorites">
+                    <ul class="collection">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+        var x = document.getElementById("demo");
+        var lat;
+        var long;
+        var data;
+        var favList = [];
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        $("#submit2").on("click", function (event) {
+            var input = $("#search").val().trim()
+            input = input.replace(/\s+/g, '-').toLowerCase();
+            console.log(input);
+            var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=venue" + "&location=" + input;
+            $.ajax({
+                url: myurl,
+                headers: {
+                    'Authorization': 'Bearer RtqndUxr--tRi7fFCPlmPzQ2Kqc6_UXPEbEI3v4js4S7aZN_tvnh9_lL55XbcncIt-rQpD3a3R4v7bcrtwlrLH42juWfqda1HVQHQnf-q6q0nALbh_BH8JTdJswRXHYx',
+                },
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log('success: ' + data);
+                }
+            })
+                .then(function (response) {
+                    data = response;
+                    console.log(myurl);
+                    console.log(response);
+                    console.log(response.businesses.length);
+                    $("#results").html("");
+                    for (var i = 0; i < response.businesses.length; i++) {
+                        $("#results").append("<div class='row'> <div class='col s12 m6'> <div class='card'> <div class='card-image'> <img src='" + response.businesses[i].image_url + "'> <span class='card-title'>" + response.businesses[i].name + "</span> <a val='" + i + "' id='venues' class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>favorite_border</i></a> </div> <div class='card-content'> <p>" + response.businesses[i].location.display_address[0] + response.businesses[i].location.display_address[1] + "<br> Rating: " + response.businesses[i].rating + "</p> </div> </div> </div> </div>");
+                    }
+                    var randbutton = $("<button id='random' class='btn btn-dark' onclick='getRandom()'>I Can't Pick</button>")
+                    $("#results").append(randbutton);
+                });
+
+        });
+        $("li").on("click", function () {
+            showLoader();
+            $("#loading-content").load("dataSearch.php?" + this.id, hideLoader);
+            console.log(this.id);
+        });
+        function showPosition(position) {
+            lat = position.coords.latitude;
+            long = position.coords.longitude;
+
+            var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=venue" + "&latitude=" + lat + "&longitude=" + long + "&limit=20";
+            $.ajax({
+                url: myurl,
+                headers: {
+                    'Authorization': 'Bearer RtqndUxr--tRi7fFCPlmPzQ2Kqc6_UXPEbEI3v4js4S7aZN_tvnh9_lL55XbcncIt-rQpD3a3R4v7bcrtwlrLH42juWfqda1HVQHQnf-q6q0nALbh_BH8JTdJswRXHYx',
+                },
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log('success: ' + data);
+                }
+            })
+                .then(function (response) {
+                    data = response;
+                    console.log(myurl);
+                    console.log(response);
+                    console.log(response.businesses.length);
+                    $("#results").html("");
+                    for (var i = 0; i < response.businesses.length; i++) {
+                        $("#results").append("<div class='row'> <div class='col s12 m6'> <div class='card'> <div class='card-image'> <img src='" + response.businesses[i].image_url + "'> <span class='card-title'>" + response.businesses[i].name + "</span> <a val='" + i + "' id='venues' class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>favorite_border</i></a> </div> <div class='card-content'> <p>" + response.businesses[i].location.display_address[0] + response.businesses[i].location.display_address[1] + "<br> Rating: " + response.businesses[i].rating + "</p> </div> </div> </div> </div>");
+                    }
+
+                });
+        }
+        //When user clicks favorites button, add that venue to favorites list
+        $(document).on("click", "#venues", function () {
+            // Get the number of the button from its data attribute and hold in a variable called  toDoNumber.
+            var venueID = $(this).attr("val");
+            console.log(venueID);
+            //check if repeat favorite
+            for (var i = 0; i < favList.length; i++) {
+                if (venueID === favList[i]) {
+                    console.log("you chose that already");
+                    return;
+                }
+            }
+            favList.push(venueID);
+            // console.log(favList);
+            // console.log(data.businesses[venueID].name);
+            $(".collection").html("");
+            for (var i = 0; i < favList.length; i++) {
+                $(".collection").append("<li class='collection-item avatar'> <img src=" + data.businesses[favList[i]].image_url + " class='circle'> <span class='title'>" + data.businesses[favList[i]].name + "</span> <p>" + data.businesses[favList[i]].display_phone + "<br></p> <a href='" + data.businesses[favList[i]].url + "' class='secondary-content'><i class='material-icons red-text'>arrow_forward</i></a> </li>");
+            }
+        });
+
+        //keep favorites list on screen
+        window.onscroll = function () { myFunction() };
+
+        var header = document.getElementById("favorites");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+</body>
+
+</html>
