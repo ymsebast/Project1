@@ -56,13 +56,13 @@ database.ref().on("child_added", function (snapshot) {
     // create done button
     var doneButton = $("<button>");
     //doneButton.attr("data-done", i);
-    doneButton.addClass("doneButton btn-floating btn-small");
+    doneButton.addClass("doneButton btn-floating btn-small red");
     doneButton.html("<i class='material-icons'>check</i>");
 
     // create delete button
     var deleteButton = $("<button>");
     //deleteButton.attr("data-delete", i);
-    deleteButton.addClass("deleteButton btn-floating btn-small");
+    deleteButton.addClass("deleteButton btn-floating btn-small red");
     deleteButton.html("<i class='material-icons'>delete</i>");
 
     // create new table row
